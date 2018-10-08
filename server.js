@@ -76,7 +76,7 @@ function request_page(url, width_1, height_1, callback){
 
 			properties.output = page.viewportSize.width + "__" + page.viewportSize.height;
 	
-			properties.height11 = height_1;
+			properties.height11 = document.body.offsetHeight;
 			
 			page.onCallback = function(data) {
 				window.setTimeout(function () {
