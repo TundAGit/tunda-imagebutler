@@ -43,8 +43,8 @@ var service = server.listen(port, function(request, response) {
 		response.statusCode = 200;
 		//response.setHeader('Content-Type', 'text/plain');
 		//response.write("request method:" + request.method + " QUERY:" + request.url);
-		//response.write(JSON.stringify(properties));	
-		//response.write("\n");	
+		response.write(JSON.stringify(properties));	
+		response.write("\n");	
 		
 		response.write(imageuri);
 		response.close();
@@ -78,14 +78,14 @@ function request_page(url, width_1, height_1, callback){
 			properties.output = page.viewportSize.width + "__" + page.viewportSize.height;
 	
 			properties.height11 = document.body.offsetHeight;
-			properties.height1 = height_1;
+			properties.height1 = Math.round(height_1);
 			
 			page.onCallback = function(data) {
 				window.setTimeout(function () {
 					
 					var height_x = getQueryVariable('height',page.url);
 					
-					page.clipRect = { top: 0, left: 0, width: 1400, height: Math.round(height_x), };
+					page.clipRect = { top: 0, left: 0, width: 1400, height: properties.height1, };
 					
 					//page.clipRect = { top: 0, left: 0, width: 1400, height: 666, };
 					
