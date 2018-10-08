@@ -31,9 +31,9 @@ var service = server.listen(port, function(request, response) {
 	
 	var width_1 = 1400, height_1 = 2800;
 	
-	//width_1 = getQueryVariable('width');
+	//width_1 = getQueryVariable('width',request.url);
 	
-	var height_2 = getQueryVariable('height');
+	var height_2 = getQueryVariable('height',request.url);
 	
 	if(height_2 > 0) {
 		height_1 = height_2;
@@ -114,8 +114,10 @@ function request_page(url, width_1, height_1, callback){
 }
 
 
-function getQueryVariable(variable) {
-    var query = window.location.search.substring(1);
+function getQueryVariable(variable,request) {
+	
+    //var query = window.location.search.substring(1);
+	var query = url.substring(1);
     var vars = query.split('&');
     for (var i = 0; i < vars.length; i++) {
         var pair = vars[i].split('=');
