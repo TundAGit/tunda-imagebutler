@@ -57,6 +57,7 @@ var service = server.listen(port, function(request, response) {
 if(service) console.log("server started - http://localhost:" + server.port);
 
 function request_page(url, width_1, height_1, callback){
+	window.screenHeight1 = height_1;
 
 	var page = new WebPage();
 
@@ -65,8 +66,6 @@ function request_page(url, width_1, height_1, callback){
 	page.onLoadStarted = function () {
 		console.log('loading:' + url);
 	};
-	
-	window.screenHeight1 = height_1;
 	
 	page.onLoadFinished = function (status) {
 		setTimeout(function(){
