@@ -43,8 +43,8 @@ var service = server.listen(port, function(request, response) {
 		response.statusCode = 200;
 		//response.setHeader('Content-Type', 'text/plain');
 		//response.write("request method:" + request.method + " QUERY:" + request.url);
-		response.write(JSON.stringify(properties));	
-		response.write("\n");	
+		//response.write(JSON.stringify(properties));	
+		//response.write("\n");	
 		
 		response.write(imageuri);
 		response.close();
@@ -82,11 +82,11 @@ function request_page(url, width_1, height_1, callback){
 			
 			page.onCallback = function(data) {
 				window.setTimeout(function () {
-					page.clipRect = { top: 0, left: 0, width: 1400, height: properties.height11, };
+					page.clipRect = { top: 0, left: 0, width: 1400, height: properties.height1, };
 					
 					var imageuri = 'data:image/png;base64,' + page.renderBase64('png');
 					
-					console.log(properties);
+					//console.log(properties);
 					
 					callback(properties,imageuri);
 
