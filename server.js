@@ -43,9 +43,10 @@ var service = server.listen(port, function(request, response) {
 		response.statusCode = 200;
 		//response.setHeader('Content-Type', 'text/plain');
 		//response.write("request method:" + request.method + " QUERY:" + request.url);
+		/*
 		response.write(JSON.stringify(properties));	
 		response.write("\n");	
-		
+		*/
 		response.write(imageuri);
 		response.close();
 	
