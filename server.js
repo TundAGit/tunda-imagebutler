@@ -32,10 +32,10 @@ var service = server.listen(port, function(request, response) {
 	var width_1 = 1024, height_1 = 1024;
 	
 	if( getQueryVariable('width') > 0 ) 
-		width_1 = getQueryVariable('width');
+		width_1 = getQueryVariable('width') * 10;
 	
 	if( getQueryVariable('height') > 0 ) 
-		height_1 = getQueryVariable('height');
+		height_1 = getQueryVariable('height') * 10;
 	
 	
 	request_page(url, width_1, height_1, function(properties, imageuri){
