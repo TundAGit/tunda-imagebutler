@@ -36,7 +36,7 @@ var service = server.listen(port, function(request, response) {
 	var height_2 = getQueryVariable('height',request.url);
 	
 	if(height_2 > 0) {
-		height_1 = height_2;
+		height_1 = Math.round(height_2);
 	}
 	
 	request_page(url, width_1, height_1, function(properties, imageuri){
