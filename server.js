@@ -115,7 +115,7 @@ function request_page(url, width_1, height_1, callback){
 
 
 function getQueryVariable(variable,request) {
-	
+	console.log(request);
     //var query = window.location.search.substring(1);
 	var query = request.substring(1);
     var vars = query.split('&');
