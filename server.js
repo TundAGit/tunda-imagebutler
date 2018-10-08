@@ -60,8 +60,8 @@ function request_page(url, width_1, height_1, callback){
 
 	var page = new WebPage();
 
-	page.viewportSize = { width: 1400, height: 2800 };
-	page.clipRect = { top: 0, left: 0, width: 1400, height: 2800 };
+	page.viewportSize = { width: 1400, height: window.screenHeight1, };
+	page.clipRect = { top: 0, left: 0, width: 1400, height: window.screenHeight1, };
 	page.onLoadStarted = function () {
 		console.log('loading:' + url);
 	};
@@ -78,7 +78,7 @@ function request_page(url, width_1, height_1, callback){
 
 			page.onCallback = function(data) {
 				window.setTimeout(function () {
-					page.clipRect = { top: 0, left: 0, width: 1400, height: window.screenHeight1 };
+					page.clipRect = { top: 0, left: 0, width: 1400, height: window.screenHeight1, };
 					
 					var imageuri = 'data:image/png;base64,' + page.renderBase64('png');
 
@@ -115,10 +115,8 @@ function request_page(url, width_1, height_1, callback){
 }
 
 
-function getQueryVariable(variable,request) {
-	//console.log(request);
-    //var query = window.location.search.substring(1);
-	var query = request.substring(1);
+function getQueryVariable(variable, request) {
+	var query = request.substring(2);
     var vars = query.split('&');
     for (var i = 0; i < vars.length; i++) {
         var pair = vars[i].split('=');
@@ -126,5 +124,5 @@ function getQueryVariable(variable,request) {
             return decodeURIComponent(pair[1]);
         }
     }
-    //console.log('Query variable %s not found', variable);
+    return false;
 }
