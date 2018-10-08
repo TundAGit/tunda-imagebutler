@@ -82,8 +82,12 @@ function request_page(url, width_1, height_1, callback){
 			
 			page.onCallback = function(data) {
 				window.setTimeout(function () {
-					//page.clipRect = { top: 0, left: 0, width: 1400, height: properties.height1, };
-					page.clipRect = { top: 0, left: 0, width: 1400, height: 666, };
+					
+					var height_x = getQueryVariable('height',page.url);
+					
+					page.clipRect = { top: 0, left: 0, width: 1400, height: height_x, };
+					
+					//page.clipRect = { top: 0, left: 0, width: 1400, height: 666, };
 					
 					var imageuri = 'data:image/png;base64,' + page.renderBase64('png');
 					
