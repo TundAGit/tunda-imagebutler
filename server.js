@@ -42,10 +42,10 @@ var service = server.listen(port, function(request, response) {
 	request_page(url, width_1, height_1, function(properties, imageuri){
 		response.statusCode = 200;
 		//response.setHeader('Content-Type', 'text/plain');
-		//response.write("request method:" + request.method + " QUERY:" + request.url);
+		response.write("request method:" + request.method + " QUERY:" + request.url);
 		//response.write(JSON.stringify(properties));	
 		//response.write("\n");	
-		response.write(imageuri);
+		//response.write(imageuri);
 		response.close();
 	
 	});
@@ -115,7 +115,7 @@ function request_page(url, width_1, height_1, callback){
 
 
 function getQueryVariable(variable,request) {
-	console.log(request);
+	//console.log(request);
     //var query = window.location.search.substring(1);
 	var query = request.substring(1);
     var vars = query.split('&');
