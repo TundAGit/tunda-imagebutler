@@ -31,11 +31,9 @@ var service = server.listen(port, function(request, response) {
 	
 	var width_1 = 1024, height_1 = 1024;
 	
-	if( getQueryVariable('width') > 0 ) 
-		width_1 = getQueryVariable('width') * 10;
+	width_1 = getQueryVariable('width');
 	
-	if( getQueryVariable('height') > 0 ) 
-		height_1 = getQueryVariable('height') * 10;
+	height_1 = getQueryVariable('height');
 	
 	
 	request_page(url, width_1, height_1, function(properties, imageuri){
