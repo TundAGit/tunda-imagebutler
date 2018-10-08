@@ -31,7 +31,14 @@ var service = server.listen(port, function(request, response) {
 	
 	var width_1 = 1024, height_1 = 1024;
 	
-	request_page(url, width, height, function(properties, imageuri){
+	if( getQueryVariable('width') > 0 ) 
+		width_1 = getQueryVariable('width');
+	
+	if( getQueryVariable('height') > 0 ) 
+		height_1 = getQueryVariable('height');
+	
+	
+	request_page(url, width_1, height_1, function(properties, imageuri){
 		response.statusCode = 200;
 		//response.setHeader('Content-Type', 'text/plain');
 		//response.write("request method:" + request.method + " QUERY:" + request.url);
@@ -103,4 +110,17 @@ function request_page(url, width_1, height_1, callback){
 	};
 
 	page.open(url);
+}
+
+
+function getQueryVariable(variable) {
+    var query = window.location.search.substring(1);
+    var vars = query.split('&');
+    for (var i = 0; i < vars.length; i++) {
+        var pair = vars[i].split('=');
+        if (decodeURIComponent(pair[0]) == variable) {
+            return decodeURIComponent(pair[1]);
+        }
+    }
+    //console.log('Query variable %s not found', variable);
 }
