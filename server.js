@@ -42,10 +42,10 @@ var service = server.listen(port, function(request, response) {
 	request_page(url, width_1, height_1, function(properties, imageuri){
 		response.statusCode = 200;
 		//response.setHeader('Content-Type', 'text/plain');
-		response.write("request method:" + request.method + " QUERY:" + request.url);
+		//response.write("request method:" + request.method + " QUERY:" + request.url);
 		//response.write(JSON.stringify(properties));	
 		//response.write("\n");	
-		//response.write(imageuri);
+		response.write(imageuri);
 		response.close();
 	
 	});
@@ -59,13 +59,14 @@ if(service) console.log("server started - http://localhost:" + server.port);
 function request_page(url, width_1, height_1, callback){
 
 	var page = new WebPage();
-	
+
 	page.viewportSize = { width: 1400, height: 2800 };
 	page.clipRect = { top: 0, left: 0, width: 1400, height: 2800 };
 	page.onLoadStarted = function () {
 		console.log('loading:' + url);
 	};
 	
+	window.screenHeight1 = height_1;
 	
 	page.onLoadFinished = function (status) {
 		setTimeout(function(){
@@ -77,7 +78,7 @@ function request_page(url, width_1, height_1, callback){
 
 			page.onCallback = function(data) {
 				window.setTimeout(function () {
-					page.clipRect = { top: 0, left: 0, width: 1400, height: height_1 };
+					page.clipRect = { top: 0, left: 0, width: 1400, height: window.screenHeight1 };
 					
 					var imageuri = 'data:image/png;base64,' + page.renderBase64('png');
 
