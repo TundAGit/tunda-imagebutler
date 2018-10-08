@@ -57,12 +57,14 @@ var service = server.listen(port, function(request, response) {
 if(service) console.log("server started - http://localhost:" + server.port);
 
 function request_page(url, width_1, height_1, callback){
-	window.screenHeight1 = height_1;
 
+	
 	var page = new WebPage();
 
-	page.viewportSize = { width: 1400, height: window.screenHeight1, };
-	page.clipRect = { top: 0, left: 0, width: 1400, height: window.screenHeight1, };
+	setGlobal(page, '__page_height', height_1);
+
+	page.viewportSize = { width: 1400, height: __page_height, };
+	page.clipRect = { top: 0, left: 0, width: 1400, height: __page_height, };
 	page.onLoadStarted = function () {
 		console.log('loading:' + url);
 	};
@@ -77,7 +79,7 @@ function request_page(url, width_1, height_1, callback){
 
 			page.onCallback = function(data) {
 				window.setTimeout(function () {
-					page.clipRect = { top: 0, left: 0, width: 1400, height: window.screenHeight1, };
+					page.clipRect = { top: 0, left: 0, width: 1400, height: __page_height, };
 					
 					var imageuri = 'data:image/png;base64,' + page.renderBase64('png');
 
@@ -113,6 +115,11 @@ function request_page(url, width_1, height_1, callback){
 	page.open(url);
 }
 
+function setGlobal(page, name, data) {
+    var json = JSON.stringify(data);
+    var fn = 'return window[' + JSON.stringify(name) + ']=' + json + ';';
+    return page.evaluate(new Function(fn));
+}
 
 function getQueryVariable(variable, request) {
 	var query = request.substring(2);
