@@ -61,7 +61,6 @@ function request_page(url, width_1, height_1, callback){
 	
 	var page = new WebPage();
 
-	setGlobal(page, '__page_height', height_1);
 
 	page.viewportSize = { width: 1400, height: 2800, };
 	page.clipRect = { top: 0, left: 0, width: 1400, height: 2800, };
@@ -79,7 +78,7 @@ function request_page(url, width_1, height_1, callback){
 
 			page.onCallback = function(data) {
 				window.setTimeout(function () {
-					page.clipRect = { top: 0, left: 0, width: 1400, height: page.__page_height, };
+					page.clipRect = { top: 0, left: 0, width: 1400, height: document.body.scrollHeight, };
 					
 					var imageuri = 'data:image/png;base64,' + page.renderBase64('png');
 
