@@ -64,7 +64,7 @@ function request_page(url, width_1, height_1, callback){
 
 
 	page.viewportSize = { width: 1400, height: Math.round(height_1), };
-	page.clipRect = { top: 0, left: 0, width: 1400, height: 2800, };
+	page.clipRect = { top: 0, left: 0, width: 1400, height: Math.round(height_1), };
 	page.onLoadStarted = function () {
 		console.log('loading:' + url);
 	};
