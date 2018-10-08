@@ -57,8 +57,8 @@ function request_page(url, width_1, height_1, callback){
 
 	var page = new WebPage();
 	
-	page.viewportSize = { width: 1400, height: 1400 };
-	page.clipRect = { top: 0, left: 0, width: 1400, height: 1400 };
+	page.viewportSize = { width: 1024, height: 2048 };
+	page.clipRect = { top: 0, left: 0, width: 1024, height: 2048 };
 	page.onLoadStarted = function () {
 		console.log('loading:' + url);
 	};
