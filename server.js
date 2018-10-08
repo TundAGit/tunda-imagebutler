@@ -29,7 +29,9 @@ var service = server.listen(port, function(request, response) {
 	
 	var url = "http://livingroom-cologne.de/imagebutler/tmp.php" + request.url;
 	
-	request_page(url, function(properties, imageuri){
+	
+	
+	request_page(url, width, height, function(properties, imageuri){
 		response.statusCode = 200;
 		//response.setHeader('Content-Type', 'text/plain');
 		//response.write("request method:" + request.method + " QUERY:" + request.url);
@@ -46,7 +48,7 @@ var service = server.listen(port, function(request, response) {
 
 if(service) console.log("server started - http://localhost:" + server.port);
 
-function request_page(url, callback){
+function request_page(url, width, height, callback){
 
 	var page = new WebPage();
 	
@@ -67,7 +69,7 @@ function request_page(url, callback){
 
 			page.onCallback = function(data) {
 				window.setTimeout(function () {
-					page.clipRect = { top: 0, left: 0, width: 1024, height: 1024 };
+					page.clipRect = { top: 0, left: 0, width: width, height: height };
 					
 					var imageuri = 'data:image/png;base64,' + page.renderBase64('png');
 
