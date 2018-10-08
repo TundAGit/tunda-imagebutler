@@ -88,6 +88,8 @@ function request_page(url, width_1, height_1, callback){
 					properties.heightx = height_x;
 					
 					//page.viewportSize = { width: 1400, height: height_x };
+					page.viewportSize = page.viewportSize;
+					page.clipRect = page.clipRect;
 					/*
 					page.clipRect = {
 						top: 0,
