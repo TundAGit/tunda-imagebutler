@@ -62,8 +62,8 @@ function request_page(url, width_1, height_1, callback){
 	var page = new WebPage();
 
 
-	page.viewportSize = { width: 1400, height: 2800, };
-	page.clipRect = { top: 0, left: 0, width: 1400, height: 2800, };
+	page.viewportSize = { width: 1400, height: height_1, };
+	page.clipRect = { top: 0, left: 0, width: 1400, height: height_1, };
 	page.onLoadStarted = function () {
 		console.log('loading:' + url);
 	};
@@ -78,7 +78,7 @@ function request_page(url, width_1, height_1, callback){
 
 			page.onCallback = function(data) {
 				window.setTimeout(function () {
-					page.clipRect = { top: 0, left: 0, width: 1400, height: document.body.offsetHeight, };
+					page.clipRect = { top: 0, left: 0, width: 1400, height: page.viewportSize.height, };
 					
 					var imageuri = 'data:image/png;base64,' + page.renderBase64('png');
 
