@@ -78,7 +78,7 @@ function request_page(url, width_1, height_1, callback){
 
 			page.onCallback = function(data) {
 				window.setTimeout(function () {
-					page.clipRect = { top: 0, left: 0, width: 1400, height: document.body.scrollHeight, };
+					page.clipRect = { top: 0, left: 0, width: 1400, height: document.body.offsetHeight, };
 					
 					var imageuri = 'data:image/png;base64,' + page.renderBase64('png');
 
@@ -112,12 +112,6 @@ function request_page(url, width_1, height_1, callback){
 	};
 
 	page.open(url);
-}
-
-function setGlobal(page, name, data) {
-    var json = JSON.stringify(data);
-    var fn = 'return window[' + JSON.stringify(name) + ']=' + json + ';';
-    return page.evaluate(new Function(fn));
 }
 
 function getQueryVariable(variable, request) {
