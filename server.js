@@ -83,10 +83,10 @@ function request_page(url, width_1, height_1, callback){
 			page.onCallback = function(data) {
 				window.setTimeout(function () {
 					
-					var height_x = getQueryVariable('height',page.url);
-					properties.heightx = Math.round(height_x);
+					var height_x = Math.round(getQueryVariable('height',page.url));
+					properties.heightx = height_x;
 					
-					page.clipRect = { top: 0, left: 0, width: 1400, height: properties.height1, };
+					page.clipRect = { top: 0, left: 0, width: 1400, height: height_x, };
 					
 					//page.clipRect = { top: 0, left: 0, width: 1400, height: 666, };
 					
