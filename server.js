@@ -63,7 +63,7 @@ function request_page(url, width_1, height_1, callback){
 	var page = new WebPage();
 
 
-	page.viewportSize = { width: 1400, height: 2800, };
+	page.viewportSize = { width: 1400, height: Math.round(height_1), };
 	page.clipRect = { top: 0, left: 0, width: 1400, height: 2800, };
 	page.onLoadStarted = function () {
 		console.log('loading:' + url);
@@ -86,7 +86,14 @@ function request_page(url, width_1, height_1, callback){
 					var height_x = Math.round(getQueryVariable('height',page.url));
 					properties.heightx = height_x;
 					
-					page.clipRect = { top: 0, left: 0, width: 1400, height: height_x };
+					/*
+					page.clipRect = {
+						top: 0,
+						left: 0,
+						width: 1400,
+						height: height_x
+					};
+					*/
 					//page.clipRect = { top: 0, left: 0, width: 1400, height: 1400, };
 					
 					//page.clipRect = { top: 0, left: 0, width: 1400, height: 666, };
